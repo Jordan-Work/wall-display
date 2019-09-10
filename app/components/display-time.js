@@ -1,6 +1,6 @@
 import Component from '@ember/component';
-import { observer, computed, get, set } from '@ember/object';
-import { later, cancel } from '@ember/runloop';
+import { set, computed } from '@ember/object';
+const time = new Date;
 
 export default Component.extend({
   didInsertElement: function() {
@@ -8,8 +8,6 @@ export default Component.extend({
   },
   tick: function() {
     var nextTick = Ember.run.later(this, function() {
-
-      let time = new Date;
       this.notifyPropertyChange('value');
       let twelveHours = time.getHours() > 12 ? time.getHours() - 12 : time.getHours();
       let zeroMinues = time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes();

@@ -1,12 +1,12 @@
 import Component from '@ember/component';
 import { set, computed } from '@ember/object';
-const time = new Date;
 
 export default Component.extend({
   didInsertElement: function() {
     this.tick();
   },
   tick: function() {
+    let time = new Date;
     var nextTick = Ember.run.later(this, function() {
       this.notifyPropertyChange('value');
       let twelveHours = time.getHours() > 12 ? time.getHours() - 12 : time.getHours();
